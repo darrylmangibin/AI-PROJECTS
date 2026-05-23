@@ -44,11 +44,10 @@ class ChatBot:
     self.client = initialize_client(use_ollama)
     self.use_ollama = use_ollama
     self.model_name = "gpt-oss:120b-cloud" if use_ollama else "gpt-4o-mini"
-    self.conversation_hist = []
    
     #  Initialize conversation with a system message
     self.messages = [{
-      "role": "system",
+      "role": "user",
       "content": "You are a helpful assistant."
     }]
 
@@ -97,6 +96,8 @@ class ChatBot:
           ),
         }
       }
+
+      return assistant_response
 
     except Exception as e:
       log_entry = {
